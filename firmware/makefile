@@ -36,18 +36,21 @@ DEVICE     = attiny25
 PROGRAMMER = -c usbtiny
 OBJECTS    = main.o
 
-#CLOCK      = 128000
+#CLOCK      = 8000000
 #FUSES      = -U lfuse:w:0xe2:m -U hfuse:w:0xdf:m
 
 CLOCK      = 1000000
-FUSES      = -U lfuse:w:0xc4:m -U hfuse:w:0xdf:m
+FUSES      = -U lfuse:w:0x62:m -U hfuse:w:0xdf:m
+
+#CLOCK      = 128000
+#FUSES      = -U lfuse:w:0xc4:m -U hfuse:w:0xdf:m
 
 # For computing fuse byte values for other devices and options see
 # the fuse bit calculator at http://www.engbedded.com/fusecalc/
 
 # Tune the lines below only if you know what you are doing:
 
-AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
+AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE) -b 1200 -F
 COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
 # symbolic targets:
